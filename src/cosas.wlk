@@ -28,7 +28,7 @@ object plancha {
 	method esElectrodomestico() { return true }	
 }
 
-object kiloMila {
+/*object kiloMila {
 	var property precio = 260
 }
 
@@ -55,12 +55,24 @@ object computadora {
 	method precio() { return 500 * dolar.cotizacion() }
 }
 object dolar {
-	var precio = 58
-	method cotizacion() { return precio }
+	method cotizacion() { return 58 }
 }
 
+
+
+
+	
+	
+	method esComida(){
+		return regalo.all({ comida => comida.esComida() })
+	}
+	method esElectrodomestico() {
+		return regalo.any({ electro => electro.esElectrodomestico() })
+	}
+	
+}*/
 object packComida {
-	var plato //cosas = [ ]
+	var plato 
 	var aderezo
 	method configurar(unPlato){
 		plato = unPlato
@@ -71,4 +83,24 @@ object packComida {
 	method precio() {
 		return plato.precio() + aderezo.precio()
 	}
+	 method esComida() { return true }
+	 method esElectrodomestico() { return false }
 }
+
+object packRegalo {
+	var componentes = [ ]
+	
+	method agregarRegalo(unRegalo) {
+		componentes.add(unRegalo)
+	}
+	method precio() {
+		return componentes.sum({ regalo => regalo.precio() }) * 0.8  
+	}
+	method esComida() {
+		return componentes.all({ comida => comida.esComida() })
+	}
+	method esElectrodomestico() {
+		return componentes.any({ electro => electro.esElectrodomestico() })
+	}
+}
+	
