@@ -28,8 +28,10 @@ object plancha {
 	method esElectrodomestico() { return true }	
 }
 
-/*object kiloMila {
+object kiloMila {
 	var property precio = 260
+	method esComida() { return true }
+	method esElectrodomestico() { return false }
 }
 
 object kiloDeMilasnesasLargo {
@@ -44,33 +46,28 @@ object kiloDeMilasnesasLargo {
 }
 object salsaTomate {
 	var property precio = 90
+	method esComida() { return true }
+	method esElectrodomestico() { return false }
 }
 object microondas {
 	method precio() { return 4200 }
+	method esComida() { return false }
+	method esElectrodomestico() { return true }
 }
 object kgCebollas {
 	method precio() { return 25 }
+	method esComida() { return true }
+	method esElectrodomestico() { return false }
 }
 object computadora {
 	method precio() { return 500 * dolar.cotizacion() }
+	method esComida() { return false }
+	method esElectrodomestico() { return true }
 }
 object dolar {
 	method cotizacion() { return 58 }
 }
 
-
-
-
-	
-	
-	method esComida(){
-		return regalo.all({ comida => comida.esComida() })
-	}
-	method esElectrodomestico() {
-		return regalo.any({ electro => electro.esElectrodomestico() })
-	}
-	
-}*/
 object packComida {
 	var plato 
 	var aderezo

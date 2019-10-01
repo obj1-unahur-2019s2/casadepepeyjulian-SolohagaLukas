@@ -2,7 +2,7 @@ import cosas.*
 import CuentaBancaria.*
 
 object casaDePepeYJulian {
-	var cosas = []
+	var cosas = [tiraDeAsado, tiraDeAsado]
 	var property cuentaQueEstaUsando
 	
 	method comprar(cosa) { 
@@ -21,10 +21,9 @@ object casaDePepeYJulian {
 	method queFaltaComprar(lista) {
 		return lista.filter ( { quiero => not cosas.contains(quiero) } )
 	} //recibe una lista de cosas y devuelve las cosas de esa lista que aún no se han comprado.
-	method faltaComida() {  }//indica si se han comprado menos de 2 cosas que son comida.
+	method faltaComida() { return cosas.count({ cosa => cosa.esComida() }) < 2 }
 	method gastoEnComida() {
 		var comida = cosas.filter({ comida => comida.esComida() })
-		
 		return comida.sum({ cosa => cosa.precio() })
 	}
 	method gastoEnComida2() {
@@ -67,5 +66,12 @@ object casaDePepeYJulian {
 	method electrodomesticosComprado() = cosas.filter({ cosa => cosa.esElectrodomestico() }) //con el igual me ahorro el return, solo se puede usar si return y si es sola linea
 	method gastar(importe) { cuentaQueEstaUsando.extraer(importe) }
 	method dineroDisponible() { return cuentaQueEstaUsando.saldo() }//ATRIBUTO = VARIABLE
+	method precioPromedioComida() { return self.gastoEnComida() / 2 }
+	method repitioCompra() { 
+		return cosas.asSet().size()
+				
+	}
+	method tiene(cosa) { return cosas.contains(cosa) }
 }
+
 

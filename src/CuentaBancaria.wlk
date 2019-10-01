@@ -18,7 +18,7 @@ object cuentaConGastos{
 	}
 	method extraer(importe){
 		if (importe <= 1000) {dinero -= importe - 20 }
-		else {dinero -= importe * 0.8}
+		else {dinero -= importe + importe / 50}
 	}
 	method saldo() {
 		return dinero
@@ -28,14 +28,16 @@ object cuentaConGastos{
 object cuentaCombinada{
 	var property cuentaPrimaria
 	var property cuentaSecundaria
-	var dinero = 0
+	
 	method depositar(importe){
-		
+		cuentaPrimaria += importe
 	}
 	method extraer(importe){
-		
+		if (cuentaPrimaria >= importe)
+		{ cuentaPrimaria -= importe } 
+		else { cuentaSecundaria -= importe }
 	}
 	method saldo() {
-		return cuentaPrimaria.saldo() + cuentaSecundaria.saldo()
+		return cuentaPrimaria + cuentaSecundaria
 	}
 }
